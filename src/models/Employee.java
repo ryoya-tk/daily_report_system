@@ -73,6 +73,12 @@ public class Employee {
     @Column(name="delete_flag",nullable=false)
     Integer delete_flag;
 
+
+    public Employee(){}
+
+
+
+
     public Integer getId() {
         return id;
     }
