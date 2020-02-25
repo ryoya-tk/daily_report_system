@@ -7,12 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Employee;
 import models.Report;
@@ -38,8 +38,8 @@ public class CreateReportServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ServletContext application=this.getServletContext();
-        Employee login_emp=(Employee) application.getAttribute("login_emp");
+        HttpSession session=request.getSession();
+        Employee login_emp=(Employee) session.getAttribute("login_emp");
 
         String title=request.getParameter("title");
         String content=request.getParameter("content");

@@ -6,7 +6,9 @@
 <c:param name="content">
 
 <h2>日報管理システムへようこそ</h2>
-
+<h3><a href="<c:url value='/login'/>">ログイン</a></h3>
+<h3><a href="<c:url value='/logout'/>">ログアウト</a></h3>
+<br>
 <table border="1">
 
     <tr>

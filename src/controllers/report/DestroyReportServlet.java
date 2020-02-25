@@ -42,6 +42,7 @@ public class DestroyReportServlet extends HttpServlet {
         em.remove(report);
 
         session.removeAttribute("report");
+        em.getTransaction().commit();
         em.close();
 
         response.sendRedirect(request.getContextPath()+"/report/index");

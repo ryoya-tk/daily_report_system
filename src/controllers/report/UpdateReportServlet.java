@@ -62,10 +62,11 @@ public class UpdateReportServlet extends HttpServlet {
         report.setDate_at(date);
 
         session.removeAttribute("report");
-        em.persist(report);
+        em.merge(report);
+        em.getTransaction().commit();
         em.close();
 
-
+        response.sendRedirect(request.getContextPath()+"/report/index");
 
 
     }

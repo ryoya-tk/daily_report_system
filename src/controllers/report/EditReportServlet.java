@@ -33,7 +33,7 @@ public class EditReportServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id=request.getParameter("id");
+        int id=Integer.parseInt(request.getParameter("id"));
         EntityManager em=DBUtil.createEntityManager();
         em.getTransaction().begin();
         Report r=em.find(Report.class, id);

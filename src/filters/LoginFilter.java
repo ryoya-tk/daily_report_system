@@ -36,30 +36,26 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
 
-        /*
 
+/*
         System.out.println("aaa");
         String context_path=((HttpServletRequest)request).getContextPath();
         String servlet_path=((HttpServletRequest)request).getServletPath();
 
 
-
-
-
-
         if(!servlet_path.equals("/css.*")){
-        ServletContext application=((HttpServletRequest)request).getServletContext();
-        Employee login_emp=(Employee)application.getAttribute("login_emp");
-        System.out.println("bbb");
+        HttpSession session=((HttpServletRequest)request).getSession();
+        Employee login_emp=(Employee)session.getAttribute("login_emp");
+
         if(login_emp==null){
             System.out.println("ccc");
-            ((HttpServletResponse)response).sendRedirect("/daily_report_system/login");
+            ((HttpServletResponse)response).sendRedirect(context_path+"/login");
             return;
         }
 
         System.out.println("eee");
         }
-    */
+*/
         chain.doFilter(request, response);
         System.out.println("fff");
     }

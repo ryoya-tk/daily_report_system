@@ -4,12 +4,12 @@ import java.io.IOException;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Employee;
 import utils.DBUtil;
@@ -68,9 +68,8 @@ public class LoginServlet extends HttpServlet {
         }
         else{
 
-            System.out.println("dd");
-            ServletContext application=this.getServletContext();
-            application.setAttribute("login_emp", emp);
+            HttpSession session=request.getSession();
+            session.setAttribute("login_emp", emp);
             response.sendRedirect(request.getContextPath()+"/index.html");
         }
 
