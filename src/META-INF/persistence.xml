@@ -4,7 +4,10 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>models.Employee</class>
         <class>models.Report</class>
+        <class>models.Picture</class>
+        <class>models.Original_tag</class>
         <properties>
+
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/daily_report_system?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
             <property name="javax.persistence.jdbc.user" value="repuser"/>
@@ -13,6 +16,9 @@
             <property name="hibernate.dialect	" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.show_sql	" value="true"/>
             <property name="hibernate.format_sql	" value="true"/>
+
+            <!-- JDBC connection pool (I changed the size one to ten.) -->
+            <property name="connection.pool_size" value="50"/>
         </properties>
     </persistence-unit>
 </persistence>

@@ -5,10 +5,10 @@
 <c:param name="content">
 
 <form action="<c:url value='/login'/>" method="post">
-ID<input type="text" name="id" value="${emp.id }"><br>
+<span>ID</span><input type="text" name="code" value="${emp.code }"><br>
 
-パスワード<input type="password" name="password"><br>
-
+<span>パスワード</span><input type="password" name="password"><br>
+<br>
 <input type="submit" value="送信">
 </form>
 

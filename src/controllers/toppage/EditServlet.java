@@ -35,10 +35,12 @@ public class EditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id=Integer.valueOf(request.getParameter("id"));
         EntityManager em=DBUtil.createEntityManager();
-        Employee emp=em.find(Employee.class, id);
+        Employee emp=em.find(Employee.class,id);
 
         HttpSession session=request.getSession();
         session.setAttribute("emp", emp);
+
+        session.setAttribute("_token", request.getSession().getId());
 
         em.close();
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/edit.jsp");

@@ -37,8 +37,12 @@ public class CreateReportServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session=request.getSession();
+        String _token = (String)session.getAttribute("_token");
+        if(_token != null && _token.equals(request.getSession().getId())) {
+
+
+        //HttpSession session=request.getSession();
         Employee login_emp=(Employee) session.getAttribute("login_emp");
 
         String title=request.getParameter("title");
@@ -79,4 +83,5 @@ public class CreateReportServlet extends HttpServlet {
 
     }
 
+}
 }

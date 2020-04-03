@@ -28,9 +28,15 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "checkLoginCodeAndPassword",
-            query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :password"
-            )
-
+            query = "SELECT COUNT(e) FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :password"
+            ),
+    @NamedQuery(
+            name="getEmployee",
+            query="SELECT e FROM Employee AS e WHERE e.code=:code"
+            ),
+    @NamedQuery(
+            name="checkRegisteredMail",
+            query="SELECT COUNT(e) FROM Employee AS e WHERE e.mail = :mail")
 
 
 
@@ -74,10 +80,11 @@ public class Employee {
     Integer delete_flag;
 
 
+
+
+
+
     public Employee(){}
-
-
-
 
     public Integer getId() {
         return id;

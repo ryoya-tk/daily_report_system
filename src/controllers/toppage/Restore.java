@@ -1,6 +1,7 @@
-package controllers.report;
+package controllers.toppage;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -10,20 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import models.Report;
+import models.Employee;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class DestroyReportServlet
+ * Servlet implementation class Restore
  */
-@WebServlet("/report/destroy")
-public class DestroyReportServlet extends HttpServlet {
+@WebServlet("/toppage/restore")
+public class Restore extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DestroyReportServlet() {
+    public Restore() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,20 +37,27 @@ public class DestroyReportServlet extends HttpServlet {
         HttpSession session=request.getSession();
         String _token = (String)session.getAttribute("_token");
         if(_token != null && _token.equals(request.getSession().getId())) {
-        //HttpSession session=request.getSession();
-        Report r=(Report)session.getAttribute("report");
+        int id=Integer.valueOf(request.getParameter("id"));
 
+        Employee login_emp=(Employee)session.getAttribute("login_emp");
+        if(login_emp.getAdmin_flag()!=true){
+            response.sendRedirect(request.getContextPath()+"/index.html");
+        }
         EntityManager em=DBUtil.createEntityManager();
         em.getTransaction().begin();
-        Report report=em.find(Report.class, r.getId());
-        em.remove(report);
+        Employee emp=em.find(Employee.class,id);
 
-        session.removeAttribute("report");
+        if(emp.getDelete_flag()!=1){
+            response.sendRedirect(request.getContextPath()+"/index.html");
+        }
+        emp.setDelete_flag(0);
+        emp.setUpdated_at(new Timestamp(System.currentTimeMillis()));
         em.getTransaction().commit();
         em.close();
 
-        response.sendRedirect(request.getContextPath()+"/report/index");
-    }
+
+        response.sendRedirect(request.getContextPath()+"/index.html");
+        }
 
 }
 }

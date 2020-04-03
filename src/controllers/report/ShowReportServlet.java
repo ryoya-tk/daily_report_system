@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Report;
 import utils.DBUtil;
@@ -33,10 +34,14 @@ public class ShowReportServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id=Integer.parseInt(request.getParameter("id"));
+        int id=Integer.valueOf(request.getParameter("id"));
         EntityManager em=DBUtil.createEntityManager();
         em.getTransaction().begin();
         Report r=em.find(Report.class, id);
+
+        HttpSession session=request.getSession();
+        session.setAttribute("_token", request.getSession().getId());
+
 
         em.close();
         request.setAttribute("report", r);

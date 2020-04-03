@@ -5,16 +5,24 @@
 <c:param name="content">
 
 <form action="<c:url value='/report/create'/>" method="post">
-<p>件名</p><br>
-<input type="text" name="title"><br>
-<p>日付</p>
-<input type="date" name="date" value="2020/01/01"><br>
-<p>内容</p>
-<textarea name="content"></textarea>
-<p>タグ１</p>
-<p>タグ２</p>
-
-<input type="submit" value="更新">
+<table>
+    <tr>
+        <th>件名</th>
+        <td><input type="text" name="title" required></td>
+    </tr>
+    <tr>
+        <th>作成者</th>
+        <td><c:out value="${login_emp.name }"/></td>
+    <tr>
+        <th>日付</th>
+        <td><input type="date" name="date" value="${date_at }" required></input></td>
+    </tr>
+    <tr>
+        <th>内容</th>
+        <td><textarea name="content" required></textarea></td>
+    </tr>
+</table>
+<input type="submit" value="更新"/>
 </form>
 
 

@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import models.Employee;
 import utils.DBUtil;
@@ -35,24 +36,9 @@ public class TopPageIndexServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Employee> emp=new ArrayList<>();
-
-/*      Employee e1=new Employee();
-        e1.setAdmin_flag(true);
-        e1.setCode("24678");
-        e1.setName("Mochizuki");
-        e1.setMail("sabakan@yahoo.com");
-        e1.setPhone("090-1234-5678");
-        e1.setPassword("kalp5485");
-        e1.setDelete_flag(0);
-        Timestamp currentTime=new Timestamp(System.currentTimeMillis());
-        e1.setCreated_at(currentTime);
-        e1.setUpdated_at(currentTime);
-*/
         EntityManager em=DBUtil.createEntityManager();
-/*        em.getTransaction().begin();
-        em.persist(e1);
-        em.getTransaction().commit();
-*/
+
+
         emp=(List<Employee>) em.createNamedQuery("getAllEmployees").getResultList();
 
         Long count=(Long)em.createNamedQuery("getEmployeesCount").getSingleResult();
@@ -62,6 +48,11 @@ public class TopPageIndexServlet extends HttpServlet {
         request.setAttribute("empList", emp);
         request.setAttribute("count", count);
 
+        HttpSession session=request.getSession();
+        String _token = (String)session.getAttribute("_token");
+        if(_token!=null){
+            session.removeAttribute("_token");
+        }
         //response.sendRedirect(request.getContextPath()+"/login");
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");

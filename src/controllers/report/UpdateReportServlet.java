@@ -38,6 +38,9 @@ public class UpdateReportServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session=request.getSession();
+        String _token = (String)session.getAttribute("_token");
+        if(_token != null && _token.equals(request.getSession().getId())) {
+        //HttpSession session=request.getSession();
         Report r=(Report) session.getAttribute("report");
 
         String title=request.getParameter("title");
@@ -51,6 +54,13 @@ public class UpdateReportServlet extends HttpServlet {
         } catch (ParseException e) {
             // TODO 自動生成された catch ブロック
             e.printStackTrace();
+            //response.sendRedirect(request.getContextPath()+"/report/show");
+        }finally{
+            /*int id=r.getId();
+            request.setAttribute("id", id);
+            response.sendRedirect(request.getContextPath()+"/report/show");
+            RequestDispatcher rd = request.getRequestDispatcher(request.getContextPath()+"/report/show");
+            rd.forward(request, response);*/
         }
 
         EntityManager em=DBUtil.createEntityManager();
@@ -71,4 +81,5 @@ public class UpdateReportServlet extends HttpServlet {
 
     }
 
+}
 }

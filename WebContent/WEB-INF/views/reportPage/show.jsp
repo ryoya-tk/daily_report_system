@@ -14,6 +14,10 @@
         <td><c:out value="${report.date_at }"/></td>
     </tr>
     <tr>
+        <th>作成者</th>
+        <td><c:out value="${report.employee.name }"/></td>
+    </tr>
+    <tr>
         <th>内容</th>
         <td><c:out value="${report.content }"/></td>
     </tr>
@@ -29,8 +33,9 @@
 </table>
 
 <p><a href="<c:url value='/report/index'/>">日報一覧へ</a><p>
+<c:if test="${report.employee.code.equals(login_emp.code) }">
 <p><a href="<c:url value='/report/edit?id=${report.id }'/>">編集する</a></p>
-
+</c:if>
 
 
 </c:param>

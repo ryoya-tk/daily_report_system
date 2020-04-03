@@ -9,3 +9,25 @@
     text-align:center;
 
 }
+
+#index{
+    width:60%;
+}
+
+table{
+    border-collapse: collapse; /* 隣り合うセルの線を結合 */
+    border: 2px solid #CCCC33;
+}
+
+td,th{
+    border: 1px solid #CCCC33;
+}
+
+#delete{
+    background-color:#CCCC33;
+}
+
+span{
+    diplay:inline-block;
+    width:20em;
+}

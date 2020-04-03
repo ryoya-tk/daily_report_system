@@ -23,7 +23,8 @@
 
 </table>
 
-<p><a href="<c:url value='/report/new'/>">新しくつくる</a></p>
+<p><a href="<c:url value='/report/new'/>">新しくつくる</a></p><br>
+<p><a href="<c:url value='/newTag'/>">タグを追加する</a></p><br>
 
 </c:param>
 </c:import>

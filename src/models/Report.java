@@ -19,7 +19,12 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name="getAllReport",
-            query="select r from Report as r order by r.id desc")
+            query="select r from Report as r order by r.id desc"
+            ),
+    @NamedQuery(
+            name="getReportByTag",
+            query="select r from Report as r where r.tag_01= :tag_01"
+            )
 })
 @Table(name="report_messages")
 public class Report {
@@ -41,8 +46,9 @@ public class Report {
     @Column(name="content",length=1000,nullable=false)
     private String content;
 
-    @Column(name="tag_01",length=225,nullable=true)
-    private String tag_01;
+    @ManyToOne
+    @JoinColumn(name="tag_01",nullable=true)
+    private Original_tag tag_01;
 
     @Column(name="tag_02",length=225,nullable=true)
     private String tag_02;
@@ -89,11 +95,11 @@ public class Report {
         this.content = content;
     }
 
-    public String getTag_01() {
+    public Original_tag getTag_01() {
         return tag_01;
     }
 
-    public void setTag_01(String tag_01) {
+    public void setTag_01(Original_tag tag_01) {
         this.tag_01 = tag_01;
     }
 

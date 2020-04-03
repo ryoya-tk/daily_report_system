@@ -1,7 +1,5 @@
 package models;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,29 +13,22 @@ import javax.persistence.Table;
 @Entity
 public class Picture {
 
-    @Id
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="employee_id",nullable=false)
+    @JoinColumn(name="employee",nullable=false)
     private Employee employee;
 
-    @Column(name="image_name")
-    private String name;
+    @Id
+    @Column(name="emp_code")
+    private String employee_code;
 
-    @Column(name="image_type")
-    private String type;
+    @Column(name="image_pass")
+    private String pass;
 
-    @Column(name="image_content")
-    private Long content;
-
-    @Column(name="image_size")
-    private Long size;
-
-    @Column(name="created_at")
-    Timestamp created_at;
+    public Picture(){}
 
     public Integer getId() {
         return id;
@@ -55,45 +46,22 @@ public class Picture {
         this.employee = employee;
     }
 
-    public String getName() {
-        return name;
+    public String getEmployee_code(){
+        return employee_code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmployee_id(String employee_code){
+        this.employee_code=employee_code;
     }
 
-    public String getType() {
-        return type;
+    public String getPass() {
+        return pass;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
-    public Long getContent() {
-        return content;
-    }
-
-    public void setContent(Long content) {
-        this.content = content;
-    }
-
-    public Long getSize() {
-        return size;
-    }
-
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
-    public Timestamp getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
-    }
 
 
 
