@@ -19,7 +19,9 @@
 <div id="header">
 <h1>日報管理システム</h1>
 </div>
-
+<div id="login">
+<h3>ようこそ。${login_emp.name}さん。</h3>
+</div>
 <div id="content">
 ${param.content }
 </div>

@@ -5,8 +5,8 @@
 <c:param name="content">
 <h1>日報一覧</h1>
 <h2><a href="<c:url value='/index.html'/>">従業員管理画面</a></h2>
-<h3>すべての日報一覧</h3>
-<h3><a href="<c:url value='/report/myreport'/>">自分の日報一覧</a></h3>
+<h3>自分の日報一覧</h3>
+<h3><a href="<c:url value='/report/index'/>">すべての日報一覧</a></h3>
 <table border="1">
     <tr>
         <th>件名</th>

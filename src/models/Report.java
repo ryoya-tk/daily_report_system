@@ -24,7 +24,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name="getReportByTag",
             query="select r from Report as r where r.tag_01= :tag_01"
-            )
+            ),
+    @NamedQuery(
+            name="getAllMyReport",
+            query="select r from Report as r  where r.employee.code=:login_emp_code")
 })
 @Table(name="report_messages")
 public class Report {
